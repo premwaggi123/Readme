@@ -1,0 +1,38 @@
+CIVCO/Any other Firmware Build Process:
+
+1. Take "toolchain" of concerned project and place in your system.
+2. Go to toolchain placed folder and Run/Install` Toolchain by  following cammand
+     --->  sudo ./'toolchain name'
+	 Example:--->   sudo ./fsl-imx-fb-glibc-x86_64-pds-qt5-image-cortexa7t2hf-neon-imx6ul-pds-toolchain-5.4-zeus.sh 
+	 
+3. Activate/setup toolchain by going to that envirnoment set folder in terminal.
+   Example:   . /opt/fsl-imx-fb/5.4-zeus/environment-setup-cortexa7t2hf-neon-poky-linux-gnueabi 
+
+4. Go to source code folder and Build the source code by running make file in terminal:  
+  Example:-->   user@IBE2291:~/work/CIVCO/Astra_3.0_Test_Cases_Release_24/Astra_3.0_Source_Code/Release-20(250509)$ make
+  
+ 5. rerun the make file by cleaning by the cammand: make clean.
+ 
+ 6. For building first time on terminal first we have to run step-3(Activate/setup) then run make command.
+   
+7. After building you will get any bugs are there in Source code.
+
+8. We have to run our Code in respective board/yacto/CIVCO/Amatec/Any  
+ 
+9. Connect  TTL converter between to our laptop and Board.
+ 
+10. open minicom/gtkterm or any serial terminal and configure the baudrate and port.
+    Ex: sudo minicom/gtkterm
+	
+11. check TTL is connected to our PC by the command: "sudo dmesg | grep tty.." 
+  then it will show the connected tty.  Ex: ttyUSB0/1/2 
+  
+12. configure serial terminal with baudrate/port name etc.. and restart the device then booting messages will display on the terminal
+
+13. type "root" on the terminal then go to the respective binary file folder in board/yacto/CIVCO/Amatec/Any  then run  binary file
+     Ex: ./binaryfile
+	 
+	 
+
+14. copy file from one system to other:  "scp filename username@Ip_Address:~/"
+	

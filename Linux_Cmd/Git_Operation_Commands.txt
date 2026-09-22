@@ -1,0 +1,74 @@
+Git Credential:
+1. personal github credentials:
+user name:  premwaggi123
+password:   prem@ngu04
+
+2. Mindteck crededntials for gitlab: https://mtkgit.mindteck.com/users/sign_in
+user name: prema.kumar
+password: prem@ngu04
+ 
+
+1. Take client GitHub/GitLab access Credentials
+
+2.Go to your locally created  Git Folder  and Open terminal.
+
+3.Configure Git (first time only)/ Login to Git account:
+    a. CMD: git config --global user.name "User Name" -->  Ex: CMD: git config --global user.name "premwaggi123" 
+    b. CMD: git config --global user.email "your.email@example.com"   -->  Ex: CMD: CMD: git config --global user.email "prem.waggi@gmail.com"
+
+4. Clone or Download Your required project(GitHub repository) from client Git server to your Local PC : 
+    a. CMD: git clone https://github.com/username/repository.git    -->   Ex: git clone https://github.com/premwaggi123/Thread.git
+	
+5. Check repository status
+    CMD: git status
+	
+6. Create a new file/New Folder/modify existing files on your Local PC Git repository:
+    a. Create new file in Local git repository then follow the below step for uploading it into server GitHub/GitLab.
+	    1. CMD: git add filename.txt    --> if it is single file created.
+		  or CMD: git add .   --> if it is multiple files created.
+		2. Commit/update/Discribe if any changes/created file in step-1.
+           CMD: git commit -m "Describe your changes"
+		3. Push/Upload created new file to GitHub server
+           CMD: git push origin main    --> (Replace main with your branch name if different.)
+		   or CMD:  git push
+		   
+	b.  Create new folder in Local git repository then follow the below step for uploading it into server GitHub/GitLab.
+	    1. CMD: git add folder_name    --> if it is single folder created.
+		  or CMD: git add .   --> if it is multiple folder created.
+		2. Commit/update/Discribe created folder in step-1 in your loacal repository
+           CMD: git commit -m "Describe your changes/update"
+		3. Push/Upload created new folder to GitHub server
+           CMD: git push origin main    --> (Replace main with your branch name if different.)
+		   or CMD:  git push
+		   
+	c.  Modification  done for Created file/folder  in Local git repository then follow the below step for uploading it into server GitHub/GitLab.
+	    1. CMD: git add folder_name/file_name    --> if it is single folder/file created.
+		  or CMD: git add .   --> if it is multiple folder /file created.
+		2. Commit/update/Discribe created folder/file in step-1 in your local repository
+           CMD: git commit -m "Describe your changes/update"
+		3. Push/Upload created new folder/file to GitHub server
+           CMD: git push origin main    --> (Replace main with your branch name if different.)
+		   or CMD:  git push	  
+		   
+7. Pull/Download latest changes from Server GitHub to Loacal PC repository.
+    a. CMD: git pull origin main		   
+		   
+8. View commit history
+    a. CMD:  git log
+	b. Compact commit view:
+	     CMD: git log --oneline
+	   
+9. Modify Latest git commit string
+	 EX: a. CMD: git log
+	       b. CMD :  git commit -m "Any work related string"     to    CMD: gti commit  --amend -m "Modified string data"
+	       c.. push it to server by CMD:  git push --force-with-lease
+		   
+10. See differences on previous commit.
+        CMD: git diff
+		
+11. Create a new branch
+        CMD: git branch feature-branch     -->     Ex:  CMD git branch code
+		
+12. git branch switching from cutrrent(main) to newone(code) command.
+        CMD: git checkout code
+	      

@@ -1,0 +1,52 @@
+POLYSPACE SETUP AND USAGE GUIDE
+================================
+
+
+1.CROSS-COMPILATION ENVIRONMENT SETUP
+--------------------
+/opt/fsl-imx-fb/5.4-zeus/environment-setup-cortexa7t2hf-neon-poky-linux-gnueabi
+
+
+2. BUILD COMMAND
+----------------
+polyspace-configure -prog <project_name> make
+
+
+3. UI LAUNCH
+------------
+polyspace-desktop-ui
+
+
+4. OPEN PROJECT
+---------------
+Select the <project_name>.psprjx
+
+
+5. STATIC ANALYSIS WORKFLOW
+----------------------------
+Select the source code folder
+            |
+            v
+    Configuration
+            |
+            v
+    Static Analysis
+            |
+            v
+    Defects and Coding Standards
+            |
+            v
+    Use Custom Checker File
+            |
+            v
+    Select cpp_check.xml
+            |
+            v
+         Finish
+
+
+6. RUN AND REVIEW
+-----------------
+  - Go to the project window and click on "Find Issues"
+  - After execution, it will enable the Dashboard — click on that
+  - Then proceed for Review

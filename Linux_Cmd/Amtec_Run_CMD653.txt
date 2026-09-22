@@ -1,0 +1,344 @@
+
+CIVCO Project:
+
+civco toolchain install script:
+sudo ./fsl-imx-fb-glibc-x86_64-pds-qt5-image-cortexa7t2hf-neon-imx6ul-pds-toolchain-5.4-zeus.sh
+
+Link Civco toolchain script on each terminal open:
+. /opt/fsl-imx-fb/5.4-zeus/environment-setup-cortexa7t2hf-neon-poky-linux-gnueabi
+
+Build civco project script:
+make
+
+secure copy from one sytem to other:
+scp Release-20_fix.zip user@172.16.16.60:~/
+scp (filename) user@(desination pc IP):~/
+
+
+SVN Path for CIVCO Backend:
+https://svn.mindteck.com/CIVCO_ASTRA_GEN3.0/PDLC/4_Main%20Board%20Application/Coding/BackendSource/
+svn checkout https://svn.mindteck.com/CIVCO_ASTRA_GEN3.0/PDLC/4_Main%20Board%20Application/Coding/BackendSource/
+
+
+
+
+
+running Commands:AMTEC RTC
+
+copy to server from my system:
+scp -r rtc_rd_wrt.c user@172.16.2.2:/home/user/criticallink/src/SPI_workspace/LCD_test/RTC_test
+
+To Enter into server:
+ssh root@172.16.2.35
+root@mitysom-am57x:cd /sys/bus/iio/devices/iio:device1#   // to check ADC driver files
+
+
+AMTEC NTP:
+
+* configure client(Rasp-Pi):
+->sudo apt update
+
+this method is to from inbuilt  system timesync method.
+->sudo apt install systemd-timesyncd
+->systemctl status systemd-timesyncd
+->
+->open "sudo nano /etc/systemd/timesyncd.conf" and write server ip addr to the client,
+  [Time]
+  NTP=172.16.16.57
+->sudo timedatectl set-ntp true
+  
+  
+This is NTP time update
+->sudo systemctl enable --now ntp
+->sudo systemctl restart ntp     # or ntpd
+->sudo systemctl status ntp
+
+change date in client(Rasp-Pi)
+->sudo timedatectl set-ntp false
+->sudo timedatectl set-time "2022-01-12 10:30:00"
+->systemctl status ntpd*
+
+
+server ip(laptop) : 172.16.16.57 
+
+
+For any new Building of Board: Ex-rasberi Pi board 2 model b
+1. To enable Packages-> sudo apt update
+2. To enable Ethernet port-> sudo apt install net-tools
+3. check ip Adress -> ipconfig  or hostname -I
+
+
+
+4. For running Rasp_Pi terminal we can use minicom or GTKterm terminal.
+
+
+running Commands:AMTEC USER_LOGIN
+
+gcc server.c base64.c pam_auth.c ws_data.c -o server -lpam -lssl -lcrypto
+gcc client.c base64.c clnt_ws_data.c -o client -lssl -lcrypto -lpthread
+
+gcc server.c -o server -lpam -lssl -lcrypto -lcrypt -lcjson
+
+
+
+ctags -R .    // for activating all fun
+rm -rf .server.c.swp   // for deleting swp fun
+sudo deluser tester-1 // delet user name created by server.c code
+sudo deluser --remove-home username   // delet the username created from sudo adduser.
+man pam_conv  // knowing pan_conv
+
+
+﻿https://www.man7.org/linux/man-pages/man3/pam_chauthtok.3.html
+https://man7.org/linux/man-pages/man3/shadow.3.html
+sudo cat /etc/shadow   // to check shadow password and users details
+cat /etc/passwd        // to check password users and gecos details
+cd /etc/pam.d/  // enter into pam lib
+ls         // to know which are the services availble for pam.
+
+
+latest Execution Commands:
+gcc server.c -o server -lssl -lcrypto -lcrypt -lpam -lpam_misc -lcjson
+sudo ./server
+
+gcc client.c -o client -pthread -lssl -lcrypto
+./clients
+
+
+pam library study:
+cd /etc/pam.d/
+cat common-auth 
+cat login
+
+Delet users from passwd lib:
+sudo deluser user_name  // delete from passwd lib
+sudo deluser --remove-home username  //delet from home dir 
+
+For TOTP authntication:
+1. install below google authenticator library in main root user profile ex:user
+ ->  sudo apt update
+ -> sudo apt install libpam-google-authenticator
+2. install google authenticator app from playstore to your mobile.
+3. creat new terminal switch to newly created user_name profile  ex: su testee1
+4. run below command for in tester1 profile to generate QR code.
+ ->  google-authenticator
+5. scan QR code from your mobile google authenticator app then you will get 6digit TOTP.
+
+  
+check user details:
+-> ls -al
+-> cd //it will take us to home director logined user
+-> make sure always ownership of login user should be user only, it should not be root, if their it makes some issue
+-> exit  //it will bring any switch users(ex-tester1) directory to initial login user directory
+-> sudo chown tester1:tester1 tester1  // change user ownership from root to his name
+-> sudo rm -r tester-2/ tester2/ tester-4/ user1/ user2/ user3/  //to remove multiple users from home directory
+-> sudo cat group | grep sudo // to check contentent of group 
+-> sudo groupadd tester1 sudo  // add users to sudo group for to give sudo permission to user(ex:tester1)
+-> sudo usermod -aG sudo tester1 
+-> sudo deluser username sudo   // remove user fro sudo group
+
+
+
+kill process
+netstat -tulpn grep LISTEN
+ps -aus
+kill -9 PID(1324)
+
+
+
+{
+   "header":{ "HTTP/1.1 101 Switching Protocols\r\n"
+            "Upgrade: websocket\r\n"
+            "Connection: Upgrade\r\n"
+            "Sec-WebSocket-Accept: %s\r\n"
+            "\r\n", accept_b64);  }
+   
+    "payload":{ 
+    
+      "user1":["userA","pass1","servc"],
+      "user2":["userB","pass2","servc"],
+      "user3":["userC","pass3","servc"],
+      }
+}
+
+
+  // ---- SEND YOUR JSON PAYLOAD RIGHT AFTER UPGRADE ----
+    const char *payload_json =
+        "{"
+        "\"user1\":[\"userA\",\"pass1\",\"servc\"],"
+        "\"user2\":[\"userB\",\"pass2\",\"servc\"],"
+        "\"user3\":[\"userC\",\"pass3\",\"servc\"]"
+        "}";
+
+
+For Single User
+{
+    "UserList": [
+    {
+        "FullName": "user1",
+        "UserName": "tester1",
+        "Password": "welcome@123",
+        "AccountType": "service"
+    }
+    ]
+}
+
+For Single User
+{
+    "UserList": [
+    {
+        "FullName": "user2",
+        "UserName": "tester2",
+        "Password": "welcome@123",
+        "AccountType": "service"
+    }
+    ]
+}
+
+For Single User
+{
+    "UserList": [
+    {
+        "FullName": "user3",
+        "UserName": "tester3",
+        "Password": "welcome@123",
+        "AccountType": "service"
+    }
+    ]
+}
+
+For Single user:
+
+{
+    "UserList": [
+    {
+        "FullName": "user4",
+        "UserName": "tester4",
+        "Password": "welcoe@123",
+         "AccountType": "service"
+    }
+    ]
+}
+
+
+{
+    "UserList": [
+    {
+        "FullName": "user5",
+        "UserName": "tester5",
+        "Password": "welcome@123",
+        "AccountType": "service"
+    }
+    ]
+}
+
+
+{
+    "UserList": [
+    {
+        "FullName": "user6",
+        "UserName": "tester6",
+        "Password": "welcome@123",
+        "AccountType": "service"
+    }
+    ]
+}
+
+
+
+
+
+For Multiple User{
+    "UserList": [
+        {
+            "FullName": "user1",
+            "UserName": "tester1",
+            "Password": "welcome@123",
+            "AccountType": "service"
+        },
+        {
+            "FullName": "user2",
+            "UserName": "tester2",
+            "Password": "welcome@123",
+            "AccountType": "service"
+        },
+        {
+            "FullName": "user3",
+            "UserName": "tester3",
+            "Password": "welcome@123",
+            "AccountType": "service"
+        },
+        {
+           "FullName": "user4",
+           "UserName": "tester4",
+           "Password": "welcome@123",
+           "AccountType": "service"
+        },
+        {
+        "FullName": "user5",
+        "UserName": "tester5",
+        "Password": "welcome@123",
+        "AccountType": "service"
+        }
+    ]
+}
+
+
+
+{
+    "UserList": [
+        {
+            "FullName": "user1",
+            "UserName": "tester1",
+            "Password": "welcome@123",
+            "AccountType": "service"
+        },
+        {
+            "FullName": "user2",
+            "UserName": "tester2",
+            "Password": "welcome@123",
+            "AccountType": "service"
+        },
+        {
+            "FullName": "user3",
+            "UserName": "tester3",
+            "Password": "welcome@123",
+            "AccountType": "service"
+        }
+    ]
+}
+
+
+
+study process build it:
+
+-> bigal bone --sitar company having am33x proces
+-> mysom- am57x-- processor used for AMtec project.
+-> imx6-- general processor.
+-> beaglebone board  ytb-->how to bringup
+-> config working machine(processor) to local config file
+-> 'pinmux.data' or 'mux' for any processor will give pin details of the processor.
+-> original kernal have 'dtsi'  -->  after compile will get 'dtp' file
+
+study 
+1.linux file system
+2.root directory for linux.
+
+
+
+created custom 'myapp' service for 2TOTP authentication:
+
+ #/etc/pam.d/myapp
+
+# First check system password
+#auth    required   pam_unix.so    // this is optional
+
+# Then enforce TOTP (Google Authenticator)
+auth    required   pam_google_authenticator.so nullok
+
+# Account management (check if account is valid / not locked)
+account required   pam_unix.so
+
+
+
+
+postman tool and wireshark tool are need to know detailed header of data sending on webpage.

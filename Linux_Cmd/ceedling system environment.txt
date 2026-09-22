@@ -1,0 +1,68 @@
+
+CEEDLING STACK:
+---------------
+
+Ceedling    : 1.0.1    | /home/user/.rvm/gems/ruby-3.1.4/bin/ceedling
+CMock       : 2.6.0    | (Managed by Ceedling)
+Unity       : 2.6.1    | (Managed by Ceedling)
+CException  : 1.3.4    | (Managed by Ceedling)
+
+
+
+COMPILER & BUILD TOOLS:
+-----------------------
+
+GCC         : 9.4.0    | /usr/bin/gcc
+G++         : 8.4.0    | /usr/bin/g++
+Make        : 4.2.1    | /usr/bin/make
+
+
+CODE COVERAGE TOOLS:
+--------------------
+
+gcov        : 9.4.0    | /usr/bin/gcov
+gcovr       : 5.2      | /home/user/.local/bin/gcovr
+
+
+RUBY ENVIRONMENT:
+-----------------
+
+Ruby        : 3.2.2    | /home/user/.rbenv/shims/ruby
+RubyGems    : 3.7.2    | /home/user/.rbenv/shims/gem
+Gem Dir     :           | /home/user/.rvm/gems/ruby-3.1.4
+
+
+PYTHON ENVIRONMENT:
+-------------------
+
+Python3     : 3.8.10   | /usr/bin/python3
+pip3        : 20.0.2   | /usr/bin/pip3
+
+
+Environment Managers:
+---------------------
+
+rbenv       : Active (Ruby 3.2.2)
+RVM         : Present (Ruby 3.1.4 - Ceedling location)
+
+OPERATING SYSTEM:
+-----------------
+
+Ubuntu      : 20.04.6 LTS | Codename: focal
+
+
+Unit Testing by Ceedling commands
+1. ceedling new Trial_Test  :- create new unit test Project(ex:Trial_Test).
+2. ceedling module:create[module name]  :- Creating new module(ex: abc.c, abc.h, test_abc.c etc)
+3. ceedling test:abc :- Build and Compile Particular Module unitTest (Ex: test_abc.c)
+4. ceedling test:all :- Build and Compile All Modules of the Project.
+
+
+
+
+
+
+
+
+
+

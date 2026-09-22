@@ -1,0 +1,40 @@
+Yocto building on Raspberry Pi-3 board:
+
+1.Install Required Packages (Ubuntu Host):
+a. "sudo apt update"
+b. "sudo apt install -y \
+gawk wget git diffstat unzip texinfo gcc build-essential \
+chrpath socat cpio python3 python3-pip python3-pexpect \
+xz-utils debianutils iputils-ping python3-git python3-jinja2 \
+libegl1-mesa libsdl1.2-dev pylint xterm zstd \
+liblz4-tool file locales"
+
+2. Check 'meta-openembedded' or 'poky' or 'any-layer' branch
+"cd ~/yocto/layer_name"
+"git branch --show-current"  
+ouput: scarthgap
+
+3. Verify, Make sure MOUNTPOINTS are empty for mmcblk0p1 and mmcblk0p2(SD-Card).
+"lsblk"
+
+4. Unmount the SD card:
+"sudo umount /dev/mmcblk0p1"
+"sudo umount /dev/mmcblk0p2"
+
+5. Download the core-Image-minimal to SDCARD.
+ "sudo bzip2 -dc core-image-minimal-raspberrypi3.rootfs-20260624122526.wic.bz2 | sudo dd of=/dev/mmcblk0 bs=4M status=progress conv=fsync"
+ 
+6. "sync"
+
+7. Check .dts file path through kernel devshell, open a kernel devshell
+"bitbake -c devshell virtual/kernel"
+Inside the devshell, run:
+"pwd
+ls
+find . -name "bcm2710-rpi-3-b.dts"
+The pwd output will tell us exactly where Yocto unpacked the kernel source.
+output:
+dts file path: it provides pin details of Raspberry pi board:
+user@IBE2291:~/yocto/poky/build-rpi3/tmp/work-shared/raspberrypi3/kernel-source/arch/arm64/boot/dts/broadcom$ 
+
+   
